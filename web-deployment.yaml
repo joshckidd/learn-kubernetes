@@ -4,18 +4,17 @@ metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2026-06-23T19:59:28Z","generation":3,"labels":{"app":"synergychat-web"},"name":"synergychat-web","namespace":"default","resourceVersion":"947","uid":"09070310-d614-4e17-b2f4-3c32a27a3538"},"spec":{"progressDeadlineSeconds":600,"replicas":3,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"synergychat-web"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"labels":{"app":"synergychat-web"}},"spec":{"containers":[{"image":"docker.io/bootdotdev/synergychat-web:latest","imagePullPolicy":"Always","name":"synergychat-web","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":10,"conditions":[{"lastTransitionTime":"2026-06-23T19:59:28Z","lastUpdateTime":"2026-06-23T19:59:36Z","message":"ReplicaSet \"synergychat-web-f7b9f96dd\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"},{"lastTransitionTime":"2026-06-23T20:07:18Z","lastUpdateTime":"2026-06-23T20:07:18Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"}],"observedGeneration":3,"readyReplicas":10,"replicas":10,"terminatingReplicas":0,"updatedReplicas":10}}
-  creationTimestamp: "2026-06-23T19:59:28Z"
-  generation: 4
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1"},"creationTimestamp":"2026-06-23T19:59:28Z","generation":4,"labels":{"app":"synergychat-web"},"name":"synergychat-web","namespace":"crawler","resourceVersion":"4950","uid":"09070310-d614-4e17-b2f4-3c32a27a3538"},"spec":{"progressDeadlineSeconds":600,"replicas":3,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"synergychat-web"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"labels":{"app":"synergychat-web"}},"spec":{"containers":[{"env":[{"name":"WEB_PORT","valueFrom":{"configMapKeyRef":{"key":"WEB_PORT","name":"synergychat-web-configmap"}}},{"name":"API_URL","valueFrom":{"configMapKeyRef":{"key":"API_URL","name":"synergychat-web-configmap"}}}],"image":"docker.io/bootdotdev/synergychat-web:latest","imagePullPolicy":"Always","name":"synergychat-web","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":3,"conditions":[{"lastTransitionTime":"2026-06-23T19:59:28Z","lastUpdateTime":"2026-06-23T19:59:36Z","message":"ReplicaSet \"synergychat-web-f7b9f96dd\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"},{"lastTransitionTime":"2026-06-25T01:56:16Z","lastUpdateTime":"2026-06-25T01:56:16Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"}],"observedGeneration":4,"readyReplicas":3,"replicas":3,"terminatingReplicas":0,"updatedReplicas":3}}
+  creationTimestamp: "2026-08-11T16:30:57Z"
+  generation: 1
   labels:
     app: synergychat-web
   name: synergychat-web
-  namespace: default
-  resourceVersion: "4950"
-  uid: 09070310-d614-4e17-b2f4-3c32a27a3538
+  namespace: crawler
+  resourceVersion: "17835"
+  uid: befb12b4-0afd-4b00-b7d8-cb0f56f6e315
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -31,23 +30,23 @@ spec:
         app: synergychat-web
     spec:
       containers:
-      - image: docker.io/bootdotdev/synergychat-web:latest
+      - env:
+        - name: WEB_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: WEB_PORT
+              name: synergychat-web-configmap
+        - name: API_URL
+          valueFrom:
+            configMapKeyRef:
+              key: API_URL
+              name: synergychat-web-configmap
+        image: docker.io/bootdotdev/synergychat-web:latest
         imagePullPolicy: Always
         name: synergychat-web
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        env:
-        - name: WEB_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: synergychat-web-configmap
-              key: WEB_PORT
-        - name: API_URL
-          valueFrom:
-            configMapKeyRef:
-              name: synergychat-web-configmap
-              key: API_URL
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -56,19 +55,19 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-  - lastTransitionTime: "2026-06-23T19:59:28Z"
-    lastUpdateTime: "2026-06-23T19:59:36Z"
-    message: ReplicaSet "synergychat-web-f7b9f96dd" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2026-06-25T01:56:16Z"
-    lastUpdateTime: "2026-06-25T01:56:16Z"
+  - lastTransitionTime: "2026-08-11T16:31:00Z"
+    lastUpdateTime: "2026-08-11T16:31:00Z"
     message: Deployment has minimum availability.
     reason: MinimumReplicasAvailable
     status: "True"
     type: Available
-  observedGeneration: 4
+  - lastTransitionTime: "2026-08-11T16:30:57Z"
+    lastUpdateTime: "2026-08-11T16:31:00Z"
+    message: ReplicaSet "synergychat-web-5477df5759" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
   readyReplicas: 3
   replicas: 3
   terminatingReplicas: 0

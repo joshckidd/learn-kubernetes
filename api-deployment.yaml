@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: synergychat-api
+  namespace: crawler
   labels:
     app: synergychat-api
 spec:
@@ -32,6 +33,11 @@ spec:
                 configMapKeyRef:
                   name: synergychat-api-configmap
                   key: API_DB_FILEPATH
+            - name: CRAWLER_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: synergychat-api-configmap
+                  key: CRAWLER_BASE_URL
           volumeMounts:
             - name: synergychat-api-volume
               mountPath: /persist
